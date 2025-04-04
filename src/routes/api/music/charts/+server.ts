@@ -9,3 +9,4 @@ export const GET: RequestHandler = async () => {
   // Return the charts data as JSON
   return json(charts);
 };
+

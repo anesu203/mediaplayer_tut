@@ -130,7 +130,7 @@ let trendinSongs = [
     title: "Song of the Wind",
     artist: "Lizzo",
     genre: "Dance Beat",
-    image: "2400x933vf-60-lizzo.jpg",
+    image: "2400x933ea-60-lizzo.jpg",
   },
   {
     title: "Dance with Me",
