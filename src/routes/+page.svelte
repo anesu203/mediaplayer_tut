@@ -31,9 +31,15 @@
 {/each} -->
 
 <div class=" bg-purple-500 flex flex-row w-full h-screen">
-  <div class="flex flex-col bg-red-400 w-8 md:w-2/12">
-    <button class="btn btn-ghost btn-square btn-sm"
-      ><IconMenu></IconMenu></button
+  <div
+    class:w-300={menuOpen}
+    class="flex flex-col bg-red-400 w-8 md:w-2/12 transition-all"
+  >
+    <button
+      class="btn btn-ghost btn-square btn-sm"
+      onclick={() => {
+        menuOpen = !menuOpen;
+      }}><IconMenu></IconMenu></button
     >
   </div>
   <div class="bg-green-800 p-4 w-full md:w-10/12">
@@ -42,3 +48,5 @@
     <div class="w-full bg-sky-700 p-4 h-[50%]"></div>
   </div>
 </div>
+
+div.w-full
