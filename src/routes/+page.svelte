@@ -2,6 +2,7 @@
   import Artist from "$lib/components/Artist.svelte";
   import Carousel from "$lib/components/Carousel.svelte";
   import Chart from "$lib/components/Chart.svelte";
+  import TabsTab from "$lib/components/TabsTab.svelte";
   import Trending from "$lib/components/Trending.svelte";
   import IconMenu from "$lib/icons/IconMenu.svelte";
   import IconNotificationbell from "$lib/icons/IconNotificationbell.svelte";
@@ -10,6 +11,10 @@
   let { data } = $props();
 
   let menuOpen = $state();
+
+  let menuHover = $state();
+
+  let tabActive = $state();
 </script>
 
 <!-- <Carousel trending={data.trending}></Carousel>
@@ -32,7 +37,7 @@
   ></Chart>
 {/each} -->
 
-<div class=" bg-purple-500 flex flex-row w-full h-screen">
+<div class=" bg-purple-500 flex flex-row w-full md:h-screen">
   <div
     class:w-300={menuOpen}
     class="flex flex-col bg-red-400 w-8 md:w-2/12 transition-all"
@@ -44,15 +49,16 @@
       }}><IconMenu></IconMenu></button
     >
   </div>
-  <div class="bg-green-800 p-4 w-full md:w-10/12">
-    <div class="w-full bg-sky-300 p-4 h-[10%] flex flex-row">
-      <div class="w-full bg-purple-400">
-        <div>
-          <h2>SONGS</h2>
+
+  <div class="bg-green-800 w-full md:w-10/12">
+    <div class="w-full bg-sky-300 h-[6%] flex flex-wrap min-h-12">
+      <div class="w-full md:w-1/3 h-full hidden md:inline-block bg-purple-400">
+        <div class="flex space-x-2 items-end">
+          <TabsTab></TabsTab>
         </div>
       </div>
-      <div class="w-full bg-pink-400">
-        <label class="input">
+      <div class="w-full md:w-1/3 h-full bg-pink-400 block md:inline-block">
+        <label class="input w-full h-full">
           <svg
             class="h-[1em] opacity-50"
             xmlns="http://www.w3.org/2000/svg"
@@ -73,7 +79,9 @@
         </label>
       </div>
 
-      <div class="w-full bg-yellow-400 flex justify-end items-center">
+      <div
+        class="w-full md:w-1/3 h-full bg-yellow-400 flex justify-end items-center"
+      >
         <div class=" flex flex-row">
           <button class=" btn btn-ghost btn-circle btn-sm"
             ><IconNotificationbell></IconNotificationbell></button
@@ -98,8 +106,49 @@
       </div>
     </div>
 
-    <div class="w-full bg-sky-500 p-4 h-[40%]"></div>
-    <div class="w-full bg-sky-700 p-4 h-[50%]"></div>
+    <div class="w-full bg-sky-500 h-[40%]">
+      <Carousel trending={data.trending}></Carousel>
+    </div>
+
+    <div
+      class="w-full bg-sky-700 h-[54%] flex flex-col md:flex-row space-x-0 md:space-x-4"
+    >
+      <div class="bg-teal-900 p-4 w-full h-full space-y-4 md:w-8/12">
+        <div class="bg-teal-800 w-full h-[40%]">
+          <div class="w-full flex justify-between">
+            <span>Text yacho</span>
+            <span>Text yacho</span>
+          </div>
+          <div class="w-full overflow-auto flex space-x-8">
+            {#each data.artists as artist}
+              <Artist name={artist.name} image={artist.image}></Artist>
+            {/each}
+          </div>
+        </div>
+        <div
+          class="bg-teal-700 w-full flex flex-col space-x-0 md:space-x-4 md:flex-row p-4 h-[60%] space-y-4 md:space-y-0"
+        >
+          <div class="bg-teal-600 p-4 md:w-4/12 w-full"></div>
+          <div class="bg-teal-600 p-4 md:w-8/12 w-full">
+            <div class="w-full flex justify-between">
+              <span>Text yacho</span>
+              <span>Text yacho</span>
+            </div>
+            <div class="w-full overflow-auto h-full">
+              {#each data.charts as chart, i}
+                <Chart
+                  title={chart.songTitle}
+                  image={chart.albumArt}
+                  position={i + 1}
+                  artist={chart.artist}
+                ></Chart>
+              {/each}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bg-orange-600 w-full p-4 md:w-4/12"></div>
+    </div>
   </div>
 </div>
 

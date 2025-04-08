@@ -5,7 +5,7 @@
   let { title, artist, image, position } = $props();
 </script>
 
-<div class="h-36 flex space-x-4 py-2 items-center w-screen-md">
+<div class=" flex space-x-4 py-2 items-center w-screen-md">
   <div>
     {#if position < 10}
       <span class="font-medium text-2xl text-gray-400">0{position}</span>
@@ -13,7 +13,7 @@
       <span class="font-medium text-2xl text-gray-400">0{position}</span>
     {/if}
   </div>
-  <div class="aspect-square rounded-2xl overflow-hidden h-32">
+  <div class="aspect-square rounded-2xl overflow-hidden h-12 w-12">
     <img src="/album_art/{image}" alt="" />
   </div>
   <div class="flex flex-col min-w-48">
